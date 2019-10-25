@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
 * d) admin 是已注册用户
 * e) 注册成功返回: {code: 0, data: {_id: 'abc', username: ‘xxx’, password:’123’}
 * f) 注册失败返回: {code: 1, msg: '此用户已存在'}*/
+// 注册
 router.post('/register',(req,res)=>{
   const {username,password,type}  = req.body;
   UserModel.findOne({username},(err,userDoc)=>{
@@ -27,5 +28,17 @@ router.post('/register',(req,res)=>{
     }
   })
 });
+// 登录
+router.post('/login',(req,res)=>{
+  const {username,password} = req.body;
+  UserModel.findOne({username,password:md5(password)},{password:0,__v:0},(err,userDoc)=>{
+    if(userDoc){
+      res.send({code:0,data:userDoc})
+    }else {
+      res.send({code:1,msg:'输入用户不存在或密码错误'})
+    }
+  })
+})
+
 
 module.exports = router;
