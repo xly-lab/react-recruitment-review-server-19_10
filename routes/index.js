@@ -33,6 +33,7 @@ router.post('/login',(req,res)=>{
   const {username,password} = req.body;
   UserModel.findOne({username,password:md5(password)},{password:0,__v:0},(err,userDoc)=>{
     if(userDoc){
+      res.cookie('userid',userDoc._id,{maxAge:1000*60*60})
       res.send({code:0,data:userDoc})
     }else {
       res.send({code:1,msg:'输入用户不存在或密码错误'})
