@@ -22,7 +22,7 @@ router.post('/register',(req,res)=>{
       res.send({code:1,msg:'该用户已存在'})
     }else {
       new UserModel({username,type,password:md5(password)}).save((err,userDoc)=>{
-        res.cookie('userid',userDoc._id,{maxAge:1000*60*60})
+        res.cookie('userid',userDoc._id,{maxAge:1000*60*60});
         res.send({code:0,data:{username,type,_id:userDoc._id}})
       })
     }
@@ -33,13 +33,37 @@ router.post('/login',(req,res)=>{
   const {username,password} = req.body;
   UserModel.findOne({username,password:md5(password)},{password:0,__v:0},(err,userDoc)=>{
     if(userDoc){
-      res.cookie('userid',userDoc._id,{maxAge:1000*60*60})
+      res.cookie('userid',userDoc._id,{maxAge:1000*60*60});
       res.send({code:0,data:userDoc})
     }else {
       res.send({code:1,msg:'输入用户不存在或密码错误'})
     }
   })
-})
+});
+
+router.post('/update',(req,res)=>{
+  console.log('sss')
+  const userid = req.cookies.userid;
+  console.log(userid)
+  if(!userid){
+    res.send({code:1,msg:'请先登录'});
+    return;
+  }
+  const user = req.body;
+  console.log('eee');
+
+  UserModel.findByIdAndUpdate({_id:userid},user,(err,oldUserDoc)=>{
+   console.log('eee');
+    if(!oldUserDoc){
+      res.clearCookie('userid');
+      res.send({code:1,msg:'登录失效，请重新登录'});
+      return;
+    }
+    const {_id,type,username} = oldUserDoc;
+    const data=Object.assign({_id,type,username},user);
+    res.send({code:0,data})
+  })
+});
 
 
 module.exports = router;
