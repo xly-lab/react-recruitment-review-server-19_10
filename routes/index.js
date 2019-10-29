@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const UserModel  = require('../db/model.js').UserModel;
 const md5 = require('blueimp-md5');
+const filter = {password:0,__v:0};
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -31,7 +32,7 @@ router.post('/register',(req,res)=>{
 // 登录
 router.post('/login',(req,res)=>{
   const {username,password} = req.body;
-  UserModel.findOne({username,password:md5(password)},{password:0,__v:0},(err,userDoc)=>{
+  UserModel.findOne({username,password:md5(password)},filter,(err,userDoc)=>{
     if(userDoc){
       res.cookie('userid',userDoc._id,{maxAge:1000*60*60});
       res.send({code:0,data:userDoc})
@@ -42,28 +43,35 @@ router.post('/login',(req,res)=>{
 });
 
 router.post('/update',(req,res)=>{
-  console.log('sss')
   const userid = req.cookies.userid;
-  console.log(userid)
   if(!userid){
-    res.send({code:1,msg:'请先登录'});
-    return;
+    return res.send({code:1,msg:'请先登录'});
   }
   const user = req.body;
-  console.log('eee');
-
   UserModel.findByIdAndUpdate({_id:userid},user,(err,oldUserDoc)=>{
-   console.log('eee');
     if(!oldUserDoc){
       res.clearCookie('userid');
       res.send({code:1,msg:'登录失效，请重新登录'});
-      return;
+    }else {
+      const {_id,type,username} = oldUserDoc;
+      const data=Object.assign({_id,type,username},user);
+      res.send({code:0,data})
     }
-    const {_id,type,username} = oldUserDoc;
-    const data=Object.assign({_id,type,username},user);
-    res.send({code:0,data})
+
   })
 });
-
+router.get('/user',(req,res)=>{
+  const userid = req.cookies.userid;
+  if(!userid){
+    return res.send({code:1,msg:'请先登录'});
+  }
+  UserModel.findOne({_id:userid},filter,(err,userDoc)=>{
+    if (userDoc){
+      res.send({code:0,data:{userDoc}});
+    }else {
+      res.send({code:1,msg:"登录失效"})
+    }
+  })
+})
 
 module.exports = router;
