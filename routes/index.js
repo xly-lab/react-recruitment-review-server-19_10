@@ -67,11 +67,11 @@ router.get('/user',(req,res)=>{
   }
   UserModel.findOne({_id:userid},filter,(err,userDoc)=>{
     if (userDoc){
-      res.send({code:0,data:{userDoc}});
+      res.send({code:0,data:userDoc});
     }else {
       res.send({code:1,msg:"登录失效"})
     }
   })
-})
+});
 
 module.exports = router;
