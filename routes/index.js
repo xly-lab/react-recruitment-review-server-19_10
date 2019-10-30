@@ -73,5 +73,14 @@ router.get('/user',(req,res)=>{
     }
   })
 });
-
+router.get('/userlist',(req,res)=>{
+///userlist?type=boss-------此种传参行为为query方式
+///userlist/:type-------此种传参行为为params方式
+  const {type} = req.query;
+  UserModel.find({type},filter,(err,users)=>{
+    if(users.length!==0){
+      res.send({code:0,data:users})
+    }
+  })
+});
 module.exports = router;

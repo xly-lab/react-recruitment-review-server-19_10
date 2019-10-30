@@ -29,7 +29,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.13.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../react-recruitment-review-19_10" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.mongoOptions" />
@@ -65,7 +65,8 @@
       <workItem from="1571911186509" duration="160000" />
       <workItem from="1571967441124" duration="10161000" />
       <workItem from="1572225876428" duration="7082000" />
-      <workItem from="1572313452094" duration="3485000" />
+      <workItem from="1572313452094" duration="3539000" />
+      <workItem from="1572416593642" duration="993000" />
     </task>
     <servers />
   </component>
