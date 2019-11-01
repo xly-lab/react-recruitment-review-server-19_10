@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const {UserModel,ChatModel}  = require('../db/model.js');
+const UserModel= require('../db/model.js').UserModel;
+const ChatModel= require('../db/model.js').ChatModel;
 const md5 = require('blueimp-md5');
 const filter = {password:0,__v:0};
 /* GET home page. */
@@ -23,7 +24,7 @@ router.post('/register',(req,res)=>{
       res.send({code:1,msg:'该用户已存在'})
     }else {
       new UserModel({username,type,password:md5(password)}).save((err,userDoc)=>{
-        res.cookie('userid',userDoc._id,{maxAge:1000*60*60});
+        res.cookie('userid',userDoc._id,{maxAge:1000*60*60*2});
         res.send({code:0,data:{username,type,_id:userDoc._id}})
       })
     }
