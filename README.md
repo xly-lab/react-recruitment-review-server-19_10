@@ -45,7 +45,7 @@
 ## 2、登陆
 
 ### 请求URL：
-	localhost:3005/login
+	localhost:5000/login
 
 ### 请求方式：
 	POST
@@ -76,7 +76,7 @@
 ## 3、更新用户信息
 
 ### 请求URL：
-	localhost:3005/update
+	localhost:5000/update
 
 ### 请求方式：
 	POST
@@ -115,7 +115,7 @@
 ## 4、获取当前的user(根据cookie)
 
 ### 请求URL：
-	localhost:3005/user
+	localhost:5000/user
 
 ### 请求方式：
 	GET
@@ -150,7 +150,7 @@
 ## 5、获取用户列表
 
 ### 请求URL：
-	localhost:3005/userlist
+	localhost:5000/userlist
 
 ### 请求方式：
 	GET
@@ -186,7 +186,7 @@
 ## 6、获取当前用户的聊天消息列表
 
 ### 请求URL：
-	localhost:3005/msglist
+	localhost:5000/msglist
 
 ### 请求方式：
 	GET
@@ -234,7 +234,7 @@
 
 ## 7、 修改指定消息为已读
 ### 请求URL：
-	localhost:3005/readmsg
+	localhost:5000/readmsg
 
 ### 请求方式：
 	post
