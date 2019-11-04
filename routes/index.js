@@ -100,7 +100,8 @@ router.get('/msglist', function (req, res) {
        return users;
      },{});
      /*查询 userid 相关的所有聊天信息 参数 1: 查询条件 参数 2: 过滤条件 参数 3: 回调函数 */
-     ChatModel.find({'$or': [{from: userid}, {to: userid}]}, filter, function (err, chatMsgs) {
+     ChatModel.find({'$or': [{fr: userid}, {to: userid}]}, filter, function (err, chatMsgs) {
+       console.log(chatMsgs);
        // 返回包含所有用户和当前用户相关的所有聊天消息的数据
        res.send({code: 0, data: {users, chatMsgs}})
      })
@@ -110,14 +111,14 @@ router.get('/msglist', function (req, res) {
 /*修改指定消息为已读 */
 router.post('/readmsg', function (req, res) {
   // 得到请求中的 from 和 to
-  const from = req.body.from ;
+  const fr = req.body.fr ;
   const to = req.cookies.userid;
   /*更新数据库中的 chat 数据
   参数 1: 查询条件
   参数 2: 更新为指定的数据对象
   参数 3: 是否 1 次更新多条, 默认只更新一条
   参数 4: 更新完成的回调函数 */
-  ChatModel.update({from, to, read: false}, {read: true}, {multi: true}, function (err, doc) {
+  ChatModel.update({fr, to, read: false}, {read: true}, {multi: true}, function (err, doc) {
     console.log('/readmsg', doc) ;
     res.send({code: 0, data: doc.nModified});
     // 更新的数量
