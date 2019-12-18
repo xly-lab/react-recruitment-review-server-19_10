@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad835dea-efd7-479d-8eb3-bfb68fa3992d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +28,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.13.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../react-recruitment-review-19_10" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../vue/xlyShop/vue_-Retraining-server_19_09" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.mongoOptions" />
@@ -73,6 +71,15 @@
       <workItem from="1572493132620" duration="6840000" />
       <workItem from="1572571539553" duration="7864000" />
       <workItem from="1572831132829" duration="4008000" />
+      <workItem from="1572917127997" duration="82000" />
+      <workItem from="1572923963249" duration="2552000" />
+      <workItem from="1573003751731" duration="2530000" />
+      <workItem from="1573549354255" duration="1863000" />
+      <workItem from="1573616845067" duration="13000" />
+      <workItem from="1576466344312" duration="1080000" />
+      <workItem from="1576477509155" duration="16000" />
+      <workItem from="1576563470082" duration="746000" />
+      <workItem from="1576634961253" duration="622000" />
     </task>
     <servers />
   </component>
